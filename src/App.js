@@ -8,7 +8,7 @@ import { Methodology } from './components/Methodology';
 import { Contact } from './components/Contact';
 import { ScrollToTop } from './components/ScrollToTop';
 
-// Componente de Botón de WhatsApp Flotante
+// Componente de Botón de WhatsApp Flotante (Requerido para captación eficiente)
 const WhatsAppButton = () => (
   <a 
     href="https://wa.me/573053412485" 
@@ -26,37 +26,63 @@ const WhatsAppButton = () => (
 function App() {
   return (
     <div className="min-h-screen bg-white font-montserrat scroll-smooth">
-      {/* Navegación Principal */}
       <Navbar />
+      
+      {/* Sección Inicio */}
       <Hero />
+      
+      {/* Sección Aliados Estratégicos */}
       <section id="aliados">
         <Partners />
       </section>
+
+      {/* Sección Quiénes Somos (Aliado estratégico) */}
       <About />
+
+      {/* Sección Servicios (4 Pilares del Brief) */}
       <Services />
+
+      {/* Sección Metodología (5 Pasos de implementación) */}
       <Methodology />
 
-      <section className="py-20 bg-every-blue text-white text-center border-y border-every-gold/20 px-6">
-        <h2 className="text-2xl md:text-3xl font-light italic max-w-4xl mx-auto">
+      {/* Frase de cierre con diseño del manual de marca */}
+      <section className="py-24 bg-every-blue text-white text-center border-y border-every-gold/20 px-8">
+        <h2 className="text-2xl md:text-4xl font-light italic max-w-5xl mx-auto leading-relaxed">
           "Haz crecer tu negocio con nuestra experiencia en tecnología e innovación."
         </h2>
       </section>
 
-      {/* Contacto: Formulario y canales directos */}
+      {/* Sección Contacto */}
       <Contact />
 
-      {/* Footer: Información Legal y Créditos */}
-      <footer className="bg-every-blue text-every-gray py-10 text-center text-sm border-t border-white/5">
+      {/* Footer: Implementación de Logo e Identidad Visual */}
+      <footer className="bg-every-blue text-every-gray py-16 text-center text-sm border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6">
-          <p className="font-bold text-white mb-2 uppercase tracking-widest">Every Technology SAS</p>
-          <p>info@everytech.co | +57 3053412485</p>
-          <div className="mt-6 text-every-gray/50 text-xs">
+          {/* Logo en negativo para fondo oscuro */}
+          <img 
+            src="/logo texto.png" 
+            alt="Logo Every Technology" 
+            className="h-10 mx-auto mb-8 brightness-0 invert opacity-80" 
+          />
+          
+          <div className="space-y-2 mb-8">
+            <p className="font-bold text-white text-base uppercase tracking-[0.2em]">Every Technology SAS</p>
+            <p className="text-every-gray/80">info@everytech.co | +57 3053412485</p>
+          </div>
+
+          {/* Redes Sociales Sugeridas en el Brief */}
+          <div className="flex justify-center gap-6 mb-8">
+            <a href="#" className="hover:text-every-gold transition-colors font-bold uppercase tracking-widest text-[10px]">LinkedIn</a>
+            <a href="#" className="hover:text-every-gold transition-colors font-bold uppercase tracking-widest text-[10px]">Facebook</a>
+          </div>
+
+          <div className="pt-8 border-t border-white/5 text-every-gray/30 text-[10px] uppercase tracking-widest">
             © {new Date().getFullYear()} Todos los derechos reservados.
           </div>
         </div>
       </footer>
 
-      {/* Componentes de Utilidad */}
+      {/* Utilidades Flotantes */}
       <ScrollToTop />
       <WhatsAppButton />
     </div>
