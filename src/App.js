@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { About } from './components/About';
 import { Partners } from './components/Partners';
 import { Services } from './components/Services';
 import { Methodology } from './components/Methodology';
@@ -27,22 +28,14 @@ function App() {
     <div className="min-h-screen bg-white font-montserrat scroll-smooth">
       {/* Navegación Principal */}
       <Navbar />
-
-      {/* Hero: Eslogan y Video de fondo */}
       <Hero />
-
-      {/* Aliados Estratégicos: Carrusel automático */}
       <section id="aliados">
         <Partners />
       </section>
-
-      {/* Servicios: Los 4 pilares del Brief */}
+      <About />
       <Services />
-
-      {/* Metodología: Los 5 pasos de implementación */}
       <Methodology />
 
-      {/* Sección de Cierre / Frase de Impacto */}
       <section className="py-20 bg-every-blue text-white text-center border-y border-every-gold/20 px-6">
         <h2 className="text-2xl md:text-3xl font-light italic max-w-4xl mx-auto">
           "Haz crecer tu negocio con nuestra experiencia en tecnología e innovación."
