@@ -2,13 +2,12 @@ import React from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
-import { Partners } from './components/Partners';
 import { Services } from './components/Services';
 import { Methodology } from './components/Methodology';
 import { Contact } from './components/Contact';
 import { ScrollToTop } from './components/ScrollToTop';
 
-// Componente de Botón de WhatsApp Flotante (Requerido para captación eficiente)
+// Componente de Botón de WhatsApp Flotante (Captación eficiente según el Brief)
 const WhatsAppButton = () => (
   <a 
     href="https://wa.me/573053412485" 
@@ -26,63 +25,67 @@ const WhatsAppButton = () => (
 function App() {
   return (
     <div className="min-h-screen bg-white font-montserrat scroll-smooth">
+      {/* Navegación con Logo Texto */}
       <Navbar />
       
-      {/* Sección Inicio */}
+      {/* Inicio con Video y Eslogan Oficial */}
       <Hero />
       
-      {/* Sección Aliados Estratégicos */}
-      <section id="aliados">
-        <Partners />
-      </section>
-
-      {/* Sección Quiénes Somos (Aliado estratégico) */}
+      {/* Sección Quiénes Somos + Aliados Estratégicos */}
+      {/* Nota: En el nuevo diseño, Partners se invoca dentro de About para mayor impacto */}
       <About />
 
-      {/* Sección Servicios (4 Pilares del Brief) */}
+      {/* Servicios: Los 4 pilares tecnológicos */}
       <Services />
 
-      {/* Sección Metodología (5 Pasos de implementación) */}
+      {/* Metodología: Los 5 pasos de implementación */}
       <Methodology />
 
-      {/* Frase de cierre con diseño del manual de marca */}
+      {/* Frase de Cierre (Llamado a la Acción) */}
       <section className="py-24 bg-every-blue text-white text-center border-y border-every-gold/20 px-8">
-        <h2 className="text-2xl md:text-4xl font-light italic max-w-5xl mx-auto leading-relaxed">
+        <h2 className="text-3xl md:text-5xl font-light italic max-w-5xl mx-auto leading-tight">
           "Haz crecer tu negocio con nuestra experiencia en tecnología e innovación."
         </h2>
       </section>
 
-      {/* Sección Contacto */}
+      {/* Formulario de Contacto */}
       <Contact />
 
-      {/* Footer: Implementación de Logo e Identidad Visual */}
+      {/* Footer: Identidad Corporativa y Redes Sociales */}
       <footer className="bg-every-blue text-every-gray py-16 text-center text-sm border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6">
-          {/* Logo en negativo para fondo oscuro */}
+          {/* Logo negativo (blanco) para contraste */}
           <img 
             src="/logo texto.png" 
             alt="Logo Every Technology" 
-            className="h-10 mx-auto mb-8 brightness-0 invert opacity-80" 
+            className="h-10 mx-auto mb-10 brightness-0 invert opacity-90" 
           />
           
-          <div className="space-y-2 mb-8">
-            <p className="font-bold text-white text-base uppercase tracking-[0.2em]">Every Technology SAS</p>
-            <p className="text-every-gray/80">info@everytech.co | +57 3053412485</p>
+          <div className="space-y-3 mb-10">
+            <p className="font-bold text-white text-lg uppercase tracking-[0.3em]">Every Technology SAS</p>
+            <p className="text-every-gray/70 text-base font-light">
+              info@everytech.co | +57 3053412485
+            </p>
           </div>
 
-          {/* Redes Sociales Sugeridas en el Brief */}
-          <div className="flex justify-center gap-6 mb-8">
-            <a href="#" className="hover:text-every-gold transition-colors font-bold uppercase tracking-widest text-[10px]">LinkedIn</a>
-            <a href="#" className="hover:text-every-gold transition-colors font-bold uppercase tracking-widest text-[10px]">Facebook</a>
+          {/* Enlaces de Redes Sociales sugeridos en el Brief */}
+          <div className="flex justify-center gap-10 mb-10">
+            <a href="#" className="text-white hover:text-every-gold transition-colors font-bold uppercase tracking-widest text-xs">
+              LinkedIn
+            </a>
+            <a href="#" className="text-white hover:text-every-gold transition-colors font-bold uppercase tracking-widest text-xs">
+              Facebook
+            </a>
           </div>
 
-          <div className="pt-8 border-t border-white/5 text-every-gray/30 text-[10px] uppercase tracking-widest">
+          {/* Copyright y Leyes */}
+          <div className="pt-10 border-t border-white/10 text-every-gray/40 text-[10px] uppercase tracking-[0.5em]">
             © {new Date().getFullYear()} Todos los derechos reservados.
           </div>
         </div>
       </footer>
 
-      {/* Utilidades Flotantes */}
+      {/* Utilidades de Interfaz */}
       <ScrollToTop />
       <WhatsAppButton />
     </div>

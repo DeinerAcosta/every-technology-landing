@@ -46,7 +46,7 @@ export const Partners = () => {
                 <img 
                   src={`/${logo}`} 
                   alt={`Aliado Every Technology ${index + 1}`}
-                  className="h-20 md:h-24 w-auto object-contain grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-500 transform hover:scale-110" 
+                  className="h-24 md:h-32 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-500"
                 />
               </div>
             </SwiperSlide>
