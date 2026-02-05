@@ -1,68 +1,56 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Partners } from './Partners';
 
-export const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => setIsOpen(!isOpen);
+export const About = () => {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   return (
-    <nav className="bg-every-blue border-b border-every-gold/20 sticky top-0 z-50 shadow-2xl font-montserrat">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-4 flex justify-between items-center">
-        
-        {/* Logo: Adaptable en tamaño */}
-        <Link to="/" className="flex items-center hover:scale-105 transition-transform">
-          <img 
-            src="/logo texto.png" 
-            alt="Every Technology SAS" 
-            className="h-10 md:h-16 w-auto object-contain brightness-110" 
-          />
-        </Link>
+    <section className="min-h-screen bg-white flex flex-col pt-20">
+      <div className="flex-grow flex items-center px-6 md:px-12 py-10">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10 md:gap-20">
+          
+          {/* Texto: Centrado en móvil, izquierda en PC */}
+          <div className="w-full lg:w-1/2 text-center lg:text-left">
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-every-blue mb-6 uppercase leading-none tracking-tighter">
+              ¿Quiénes <br />
+              <span className="text-every-gold">Somos?</span>
+            </h2>
+            <p className="text-xl md:text-2xl text-gray-600 font-light mb-8 max-w-2xl mx-auto lg:mx-0">
+              En <span className="font-bold text-every-blue">Every Technology SAS</span> transformamos la complejidad tecnológica en oportunidades de crecimiento.
+            </p>
+            <div className="p-8 md:p-12 border-l-4 md:border-l-8 border-every-gold bg-gray-50 rounded-r-3xl text-left">
+              <p className="text-2xl md:text-4xl italic text-every-blue font-medium">
+                "Tu próximo aliado estratégico en innovación."
+              </p>
+            </div>
+          </div>
 
-        {/* Menú Desktop: Oculto en móviles */}
-        <div className="hidden md:flex gap-8 lg:gap-12 items-center text-white text-xs lg:text-sm font-bold uppercase tracking-widest">
-          <Link to="/quienes-somos" className="hover:text-every-gold transition-colors border-b-2 border-transparent hover:border-every-gold py-1">
-            Quiénes Somos
-          </Link>
-          <a href="/#servicios" className="hover:text-every-gold transition-colors">Servicios</a>
-          <a href="/#metodologia" className="hover:text-every-gold transition-colors">Metodología</a>
-          <Link 
-            to="/" 
-            className="bg-every-gold text-every-blue px-6 lg:px-8 py-3 rounded-full hover:bg-white transition-all shadow-lg text-center"
-          >
-            AGENDA UNA CONSULTA
-          </Link>
-        </div>
-
-        {/* Botón Hamburguesa: Solo móvil */}
-        <div className="md:hidden flex items-center">
-          <button onClick={toggleMenu} className="text-every-gold focus:outline-none">
-            <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              {isOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-              )}
-            </svg>
-          </button>
+          {/* Imagen/Isotipo: Oculto o ajustado en móvil para no estorbar */}
+          <div className="w-full lg:w-1/2 flex justify-center relative py-10">
+            <img 
+              src="/Logo solo.png" 
+              className="w-40 md:w-80 opacity-10 absolute animate-pulse" 
+              alt="Every"
+            />
+            <ul className="relative z-10 text-every-blue font-black text-4xl md:text-6xl space-y-4">
+              <li className="hover:text-every-gold transition-colors">Innovación</li>
+              <li className="hover:text-every-gold transition-colors">Estrategia</li>
+            </ul>
+          </div>
         </div>
       </div>
 
-      {/* Menú Móvil Desplegable */}
-      <div className={`${isOpen ? 'block' : 'hidden'} md:hidden bg-every-blue border-t border-every-gold/10 px-6 py-8 transition-all duration-300`}>
-        <div className="flex flex-col gap-6 text-white text-sm font-bold uppercase tracking-widest">
-          <Link to="/quienes-somos" onClick={toggleMenu} className="hover:text-every-gold">Quiénes Somos</Link>
-          <a href="/#servicios" onClick={toggleMenu} className="hover:text-every-gold">Servicios</a>
-          <a href="/#metodologia" onClick={toggleMenu} className="hover:text-every-gold">Metodología</a>
-          <Link 
-            to="/" 
-            onClick={toggleMenu}
-            className="bg-every-gold text-every-blue px-6 py-4 rounded-xl text-center shadow-lg"
-          >
-            AGENDA UNA CONSULTA
-          </Link>
+      {/* Aliados: Ajuste de escala para que no se corte en celular */}
+      <div className="bg-gray-50 py-20 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-6">
+          <h3 className="text-center text-every-blue/40 font-bold uppercase tracking-widest text-sm mb-12">
+            Trayectoria y Confianza
+          </h3>
+          <div className="scale-90 md:scale-125 overflow-hidden">
+            <Partners />
+          </div>
         </div>
       </div>
-    </nav>
+    </section>
   );
 };
