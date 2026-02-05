@@ -1,10 +1,14 @@
-// src/components/About.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Partners } from './Partners';
 
 export const About = () => {
+  // Asegura que al navegar a esta página el scroll inicie en la parte superior
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <section id="quienes-somos" className="min-h-screen bg-white flex flex-col">
+    <section id="quienes-somos" className="min-h-screen bg-white flex flex-col pt-16">
       {/* CONTENIDO PRINCIPAL: QUIÉNES SOMOS */}
       <div className="flex-grow flex flex-col justify-center px-8 py-20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
@@ -23,7 +27,7 @@ export const About = () => {
             </div>
           </div>
           
-          <div className="md:w-1/2 flex justify-center items-center relative">
+          <div className="md:w-1/2 flex justify-center items-center relative mt-12 md:mt-0">
             {/* Logo Isotipo Gigante de Fondo */}
             <img 
               src="/Logo solo.png" 
@@ -48,8 +52,8 @@ export const About = () => {
           <h3 className="text-center text-every-blue font-montserrat font-black uppercase tracking-[0.3em] text-lg mb-20 opacity-40">
             Empresas que confían en nuestra trayectoria
           </h3>
-          {/* Llamamos a Partners con logos aumentados */}
-          <div className="scale-125 md:scale-150 transform transition-all">
+          {/* Contenedor para aumentar visualmente el tamaño de los logos */}
+          <div className="scale-110 md:scale-125 transform transition-all">
             <Partners />
           </div>
         </div>
