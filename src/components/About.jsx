@@ -1,61 +1,60 @@
 import React, { useEffect } from 'react';
-import { Partners } from './Partners';
 
 export const About = () => {
-  // Asegura que al navegar a esta página el scroll inicie en la parte superior
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
+  const valores = [
+    { t: "Innovación", d: "Exploramos nuevas fronteras tecnológicas." },
+    { t: "Excelencia", d: "Calidad superior en cada entrega." },
+    { t: "Ética", d: "Integridad y transparencia total." },
+    { t: "Colaboración", d: "Crecemos junto a nuestros aliados." }
+  ];
 
   return (
-    <section id="quienes-somos" className="min-h-screen bg-white flex flex-col pt-16">
-      {/* CONTENIDO PRINCIPAL: QUIÉNES SOMOS */}
-      <div className="flex-grow flex flex-col justify-center px-8 py-20">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
-          <div className="md:w-1/2">
-            <h2 className="text-6xl md:text-8xl font-montserrat font-black text-every-blue mb-10 uppercase tracking-tighter leading-none">
-              ¿Quiénes <br />
-              <span className="text-every-gold">Somos?</span>
-            </h2>
-            <p className="text-2xl md:text-3xl text-gray-600 leading-relaxed font-light mb-10">
-              En <span className="font-bold text-every-blue border-b-4 border-every-gold">Every Technology SAS</span> no solo somos consultores; somos tu próximo aliado estratégico. 
+    <section className="bg-white pt-20">
+      {/* Hero de Quiénes Somos */}
+      <div className="max-w-7xl mx-auto px-6 py-20 flex flex-col lg:flex-row items-center gap-12">
+        <div className="lg:w-1/2">
+          <h1 className="text-5xl md:text-8xl font-black text-every-blue mb-6 uppercase">
+            ¿Quiénes <span className="text-every-gold text-outline">Somos?</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-600 font-light leading-relaxed">
+            En <span className="font-bold text-every-blue">Every Technology SAS</span>, somos una firma especializada en consultoría e innovación tecnológica, dedicada a convertir desafíos complejos en soluciones estratégicas.
+          </p>
+        </div>
+        <div className="lg:w-1/2 p-10 bg-every-blue rounded-3xl text-white shadow-2xl">
+          <p className="text-3xl italic font-serif">"Tu próximo aliado estratégico en innovación y crecimiento digital."</p>
+        </div>
+      </div>
+
+      {/* Misión y Visión - Responsive (1 col móvil / 2 col PC) */}
+      <div className="bg-gray-50 py-24 px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
+          <div className="space-y-6">
+            <h2 className="text-every-gold font-bold uppercase tracking-widest text-sm">Nuestra Misión</h2>
+            <p className="text-2xl text-every-blue leading-snug">
+              Impulsar la transformación de empresas a través de soluciones tecnológicas vanguardistas, acompañándolas en cada etapa de su evolución digital.
             </p>
-            <div className="p-12 border-l-8 border-every-gold bg-every-gray/5 rounded-r-3xl shadow-sm">
-              <p className="text-3xl md:text-4xl italic text-every-blue font-medium leading-tight">
-                "Transformamos la complejidad tecnológica en oportunidades de crecimiento real."
-              </p>
-            </div>
           </div>
-          
-          <div className="md:w-1/2 flex justify-center items-center relative mt-12 md:mt-0">
-            {/* Logo Isotipo Gigante de Fondo */}
-            <img 
-              src="/Logo solo.png" 
-              alt="Identidad Every" 
-              className="w-full max-w-lg opacity-5 absolute animate-pulse pointer-events-none" 
-            />
-            <div className="relative z-10 text-center">
-              <p className="text-every-gold font-montserrat uppercase tracking-[0.5em] text-sm mb-6 font-bold">Expertos en</p>
-              <ul className="text-every-blue font-black text-4xl md:text-6xl space-y-6">
-                <li className="hover:scale-105 transition-transform cursor-default underline decoration-every-gold/30">Innovación</li>
-                <li className="hover:scale-105 transition-transform cursor-default underline decoration-every-gold/30">Digitalización</li>
-                <li className="hover:scale-105 transition-transform cursor-default underline decoration-every-gold/30">Estrategia</li>
-              </ul>
-            </div>
+          <div className="space-y-6">
+            <h2 className="text-every-gold font-bold uppercase tracking-widest text-sm">Nuestra Visión</h2>
+            <p className="text-2xl text-every-blue leading-snug">
+              Ser reconocidos globalmente como líderes en consultoría tecnológica, destacando por nuestra capacidad de innovar y generar valor sostenible.
+            </p>
           </div>
         </div>
       </div>
 
-      {/* SECCIÓN DE ALIADOS INTEGRADA (Logos más grandes) */}
-      <div className="bg-every-gray/10 py-24 border-y border-every-gold/10">
-        <div className="max-w-7xl mx-auto px-8">
-          <h3 className="text-center text-every-blue font-montserrat font-black uppercase tracking-[0.3em] text-lg mb-20 opacity-40">
-            Empresas que confían en nuestra trayectoria
-          </h3>
-          {/* Contenedor para aumentar visualmente el tamaño de los logos */}
-          <div className="scale-110 md:scale-125 transform transition-all">
-            <Partners />
-          </div>
+      {/* Valores Corporativos */}
+      <div className="py-24 px-6 max-w-7xl mx-auto">
+        <h3 className="text-center text-4xl font-black text-every-blue mb-16 uppercase">Valores Corporativos</h3>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          {valores.map((v, i) => (
+            <div key={i} className="text-center p-8 border border-gray-100 rounded-2xl hover:border-every-gold transition-colors">
+              <h4 className="text-every-gold font-bold text-xl mb-2">{v.t}</h4>
+              <p className="text-gray-500 text-sm">{v.d}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
