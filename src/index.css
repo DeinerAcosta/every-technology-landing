@@ -3,11 +3,41 @@
 @tailwind components;
 @tailwind utilities;
 
-body { 
-  @apply font-montserrat bg-white text-every-blue; 
-  margin: 0;
+/* Definición de colores para que CSS los reconozca siempre */
+:root {
+  --every-blue: #001b44; /* Azul oscuro corporativo */
+  --every-gold: #bfa37c; /* Dorado corporativo */
 }
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  body { 
+    @apply font-montserrat bg-white text-every-blue; 
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
 }
+
+@layer components {
+  /* Clase para el efecto de borde en el texto (¿Quiénes SOMOS?) */
+  .text-outline {
+    -webkit-text-stroke: 1px #bfa37c; /* Color dorado */
+    color: transparent;
+  }
+
+  /* Si quieres que se llene al pasar el mouse */
+  .text-outline:hover {
+    color: #bfa37c;
+    transition: all 0.3s ease;
+  }
+}
+
+/* Clases de utilidad personalizadas por si Tailwind no las toma del config */
+.text-every-blue { color: var(--every-blue); }
+.text-every-gold { color: var(--every-gold); }
+.bg-every-blue { background-color: var(--every-blue); }
+.bg-every-gold { background-color: var(--every-gold); }

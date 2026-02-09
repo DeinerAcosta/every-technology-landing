@@ -1,56 +1,93 @@
-import React, { useEffect } from 'react';
-import { Partners } from './Partners';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
-export const About = () => {
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+export const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+
+  // Cambia el fondo del navbar al hacer scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Cerrar menú móvil al cambiar de ruta
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
 
   return (
-    <section className="min-h-screen bg-white flex flex-col pt-20">
-      <div className="flex-grow flex items-center px-6 md:px-12 py-10">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10 md:gap-20">
+    <nav 
+      className={`fixed w-full z-[100] transition-all duration-300 ${
+        scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+        
+        {/* LOGO */}
+        <Link to="/" className="flex items-center">
+          <img 
+            src="/logo texto.png" 
+            alt="Every Technology Logo" 
+            className="h-10 md:h-12 w-auto object-contain"
+          />
+        </Link>
+
+        {/* NAVEGACIÓN DESKTOP */}
+        <div className="hidden md:flex items-center gap-10">
+          <div className="flex gap-8 font-bold text-[11px] uppercase tracking-[0.2em] text-every-blue">
+            <Link to="/" className="hover:text-every-gold transition-colors">Inicio</Link>
+            <Link to="/quienes-somos" className="hover:text-every-gold transition-colors">Nosotros</Link>
+            <a href="#servicios" className="hover:text-every-gold transition-colors">Servicios</a>
+          </div>
           
-          {/* Texto: Centrado en móvil, izquierda en PC */}
-          <div className="w-full lg:w-1/2 text-center lg:text-left">
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-every-blue mb-6 uppercase leading-none tracking-tighter">
-              ¿Quiénes <br />
-              <span className="text-every-gold">Somos?</span>
-            </h2>
-            <p className="text-xl md:text-2xl text-gray-600 font-light mb-8 max-w-2xl mx-auto lg:mx-0">
-              En <span className="font-bold text-every-blue">Every Technology SAS</span> transformamos la complejidad tecnológica en oportunidades de crecimiento.
-            </p>
-            <div className="p-8 md:p-12 border-l-4 md:border-l-8 border-every-gold bg-gray-50 rounded-r-3xl text-left">
-              <p className="text-2xl md:text-4xl italic text-every-blue font-medium">
-                "Tu próximo aliado estratégico en innovación."
-              </p>
-            </div>
-          </div>
-
-          {/* Imagen/Isotipo: Oculto o ajustado en móvil para no estorbar */}
-          <div className="w-full lg:w-1/2 flex justify-center relative py-10">
-            <img 
-              src="/Logo solo.png" 
-              className="w-40 md:w-80 opacity-10 absolute animate-pulse" 
-              alt="Every"
-            />
-            <ul className="relative z-10 text-every-blue font-black text-4xl md:text-6xl space-y-4">
-              <li className="hover:text-every-gold transition-colors">Innovación</li>
-              <li className="hover:text-every-gold transition-colors">Estrategia</li>
-            </ul>
-          </div>
+          <a 
+            href="#contacto" 
+            className="bg-every-blue text-white px-8 py-3 rounded-full font-bold text-[11px] uppercase tracking-widest hover:bg-every-gold transition-all shadow-lg hover:shadow-every-gold/20"
+          >
+            Contacto
+          </a>
         </div>
+
+        {/* BOTÓN MENÚ MÓVIL */}
+        <button 
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden text-every-blue p-2"
+          aria-label="Toggle Menu"
+        >
+          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {isOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16m-7 6h7" />
+            )}
+          </svg>
+        </button>
       </div>
 
-      {/* Aliados: Ajuste de escala para que no se corte en celular */}
-      <div className="bg-gray-50 py-20 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-6">
-          <h3 className="text-center text-every-blue/40 font-bold uppercase tracking-widest text-sm mb-12">
-            Trayectoria y Confianza
-          </h3>
-          <div className="scale-90 md:scale-125 overflow-hidden">
-            <Partners />
-          </div>
+      {/* MENÚ DESPLEGABLE MÓVIL */}
+      <div 
+        className={`absolute top-full left-0 w-full bg-white border-b border-gray-100 transition-all duration-300 overflow-hidden ${
+          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        } md:hidden`}
+      >
+        <div className="flex flex-col p-8 gap-6 text-center font-bold text-xs uppercase tracking-[0.3em] text-every-blue">
+          <Link to="/" onClick={() => setIsOpen(false)}>Inicio</Link>
+          <Link to="/quienes-somos" onClick={() => setIsOpen(false)}>Nosotros</Link>
+          <a href="#servicios" onClick={() => setIsOpen(false)}>Servicios</a>
+          <a 
+            href="#contacto" 
+            onClick={() => setIsOpen(false)}
+            className="bg-every-blue text-white py-4 rounded-xl"
+          >
+            Contacto
+          </a>
         </div>
       </div>
-    </section>
+    </nav>
   );
 };
