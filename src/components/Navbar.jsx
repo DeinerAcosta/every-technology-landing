@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Cambia el fondo del navbar al hacer scroll
   useEffect(() => {
@@ -19,6 +20,28 @@ export const Navbar = () => {
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
+
+  // Función para navegación inteligente (Anclas vs Rutas)
+  const scrollToSection = (e, sectionId) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      // Si no estamos en la Home, navegamos a Home y luego scrolleamos
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      // Si ya estamos en Home, solo hacemos el scroll
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    setIsOpen(false);
+  };
 
   return (
     <nav 
@@ -42,11 +65,21 @@ export const Navbar = () => {
           <div className="flex gap-8 font-bold text-[11px] uppercase tracking-[0.2em] text-every-blue">
             <Link to="/" className="hover:text-every-gold transition-colors">Inicio</Link>
             <Link to="/quienes-somos" className="hover:text-every-gold transition-colors">Nosotros</Link>
-            <a href="#servicios" className="hover:text-every-gold transition-colors">Servicios</a>
+            
+            {/* Link Inteligente: Servicios */}
+            <a 
+              href="#servicios" 
+              onClick={(e) => scrollToSection(e, 'servicios')}
+              className="hover:text-every-gold transition-colors"
+            >
+              Servicios
+            </a>
           </div>
           
+          {/* Link Inteligente: Contacto */}
           <a 
             href="#contacto" 
+            onClick={(e) => scrollToSection(e, 'contacto')}
             className="bg-every-blue text-white px-8 py-3 rounded-full font-bold text-[11px] uppercase tracking-widest hover:bg-every-gold transition-all shadow-lg hover:shadow-every-gold/20"
           >
             Contacto
@@ -57,7 +90,6 @@ export const Navbar = () => {
         <button 
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden text-every-blue p-2"
-          aria-label="Toggle Menu"
         >
           <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {isOpen ? (
@@ -78,10 +110,10 @@ export const Navbar = () => {
         <div className="flex flex-col p-8 gap-6 text-center font-bold text-xs uppercase tracking-[0.3em] text-every-blue">
           <Link to="/" onClick={() => setIsOpen(false)}>Inicio</Link>
           <Link to="/quienes-somos" onClick={() => setIsOpen(false)}>Nosotros</Link>
-          <a href="#servicios" onClick={() => setIsOpen(false)}>Servicios</a>
+          <a href="#servicios" onClick={(e) => scrollToSection(e, 'servicios')}>Servicios</a>
           <a 
             href="#contacto" 
-            onClick={() => setIsOpen(false)}
+            onClick={(e) => scrollToSection(e, 'contacto')}
             className="bg-every-blue text-white py-4 rounded-xl"
           >
             Contacto
