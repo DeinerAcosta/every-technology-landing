@@ -36,17 +36,18 @@ export const Methodology = () => (
         Nuestra <span className="text-every-gold">Metodología</span>
       </h2>
       
-      {/* CAMBIO CLAVE: 
-          - lg:grid-cols-5 suele ser muy estrecho. 
-          - He ajustado los paddings (p-6 en desktop) para ganar espacio horizontal.
+      {/* CAMBIO EN GRID: 
+          - sm:grid-cols-2 (Móviles grandes)
+          - xl:grid-cols-5 (Solo en pantallas muy anchas)
+          - En tablets y laptops normales usará un flujo más ancho para que quepan las palabras.
       */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
         {steps.map((step, i) => (
           <div 
             key={i} 
-            className="group p-6 md:p-8 border border-every-gold/20 rounded-2xl hover:bg-white/5 transition-all duration-500 relative overflow-hidden flex flex-col min-h-[300px] md:min-h-[400px] shadow-2xl"
+            className="group p-6 md:p-8 border border-every-gold/20 rounded-2xl hover:bg-white/5 transition-all duration-500 relative overflow-hidden flex flex-col min-h-[300px] md:min-h-[380px] shadow-2xl"
           >
-            {/* Número de fondo - Ajustado tamaño para no "empujar" el texto */}
+            {/* Número de fondo */}
             <span className="text-6xl md:text-7xl font-black text-every-gold/10 absolute -top-1 -right-1 group-hover:text-every-gold/20 transition-colors duration-500 pointer-events-none">
               {step.n}
             </span>
@@ -55,11 +56,11 @@ export const Methodology = () => (
               {/* Línea decorativa */}
               <div className="w-10 h-1 bg-every-gold mb-6 group-hover:w-16 transition-all duration-500"></div>
               
-              {/* AJUSTE DE TÍTULO:
-                  - Bajamos a text-lg/text-xl para que frases como "Diseño de estrategia" no se rompan.
-                  - min-h-auto para mayor flexibilidad.
+              {/* AJUSTE CRÍTICO DE TÍTULO:
+                  - Usamos 'break-words' y 'hyphens-auto' para evitar que se salga de la caja.
+                  - Bajamos a 'text-lg' para asegurar compatibilidad.
               */}
-              <h3 className="text-lg md:text-xl font-bold text-every-gold mb-4 uppercase tracking-wider leading-tight break-words">
+              <h3 className="text-lg md:text-xl font-bold text-every-gold mb-4 uppercase tracking-wider leading-tight break-words overflow-wrap-anywhere" style={{ hyphens: 'auto' }}>
                 {step.title}
               </h3>
               
