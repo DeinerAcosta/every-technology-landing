@@ -13,7 +13,8 @@ export const Partners = () => {
     'aliado3.png', 
     'aliado4.png',
     'aliado5.png',
-    'aliado6.png'
+    'aliado6.png',
+    'aliado7.png'
   ];
 
   return (
